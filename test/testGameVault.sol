@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
-
 import {Test, console} from "forge-std/Test.sol";
 import {GameVault} from "../src/GameVault.sol";
 
@@ -56,6 +55,7 @@ contract GameVaultTest is Test {
         gameVault.withdraw();
 
         assertEq(gameVault.amount(), 0, "Vault should be empty after withdrawal");
+        assertEq(gameVault.withdrawer(), address(0));
     }
 
     function testSetWithdrawer() public {

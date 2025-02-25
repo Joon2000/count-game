@@ -28,6 +28,7 @@ contract GameVault {
     }
 
     function setWithdrawer(address selectedAddress) public onlyOwner {
+        require(selectedAddress != address(0), "Invalid withdrawer address");
         withdrawer = selectedAddress;
     }
 
@@ -41,6 +42,7 @@ contract GameVault {
         require(success, "Transfer failed");
 
         emit Withdrawn(msg.sender, withdrawAmount);
+        withdrawer = address(0);
     }
 
     function play() public payable {
